@@ -18,6 +18,7 @@ class EditDescription(BaseModel):
     id: int
     description: str
 
+
 class Status(BaseModel):
     id: int
     status: bool
@@ -39,7 +40,7 @@ async def tarefas():
 
 @app.post("/tasks/create/")
 async def create_item(task: Task):
-    n = len(tasks)
+    n = max(tasks.keys())
     tasks[n+1] = task.dict()
     return task.dict()
 
