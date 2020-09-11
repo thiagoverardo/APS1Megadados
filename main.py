@@ -19,9 +19,9 @@ class Status_Filter(str, Enum):
     all = "all"
 
 
-tasks = {1: {"name": "tarefinha", "description": "oi", "status": False},
-         2: {"name": "tarefa", "description": "tchau", "status": True},
-         3: {"name": "tarefona", "description": "sei la", "status": True}}
+tasks = {1: {"name": "Estudar Megadados", "description": "Estudar FastAPI", "status": True},
+         2: {"name": "H0 Cloud", "description": "Acabar H0 até novembro", "status": False},
+         3: {"name": "Compras", "description": "Comprar salmão e alcaparras", "status": False}}
 
 
 @app.get("/tasks/{status}", tags=["Mostra e Filtra tarefas"])
@@ -44,7 +44,9 @@ async def show_tasks(status: Status_Filter):
 
 @app.post("/tasks/create/", tags=["Cria tarefas"])
 async def create_item(task: Task):
-    ''' Esse método é usado para criar tarefas novas, podendo dar um nome a ela, uma breve descrição e um status, se for "True" quer dizer que ela já está concluída e se for False ainda não está.'''
+    ''' Esse método é usado para criar tarefas novas, podendo dar um nome a ela, uma breve descrição e um status, se for "True" quer dizer que ela já está concluída e se for False ainda não está.
+
+     Ela retorna o id da tarefa criada para facilitar sua identificação.'''
     n = max(tasks.keys())
     tasks[n+1] = task.dict()
     return n+1
