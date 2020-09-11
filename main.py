@@ -1,7 +1,6 @@
 from typing import Optional, List, Dict
-from fastapi import Body, FastAPI, Query, HTTPException
+from fastapi import Body, FastAPI, HTTPException
 from pydantic import BaseModel
-from uuid import UUID
 from enum import Enum
 
 
@@ -18,10 +17,6 @@ class Status_Filter(str, Enum):
     done = "done"
     not_done = "not_done"
     all = "all"
-
-
-class Delete(BaseModel):
-    id: int
 
 
 tasks = {1: {"name": "tarefinha", "description": "oi", "status": False},
