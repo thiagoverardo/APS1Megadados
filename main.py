@@ -10,7 +10,7 @@ app = FastAPI()
 class Task(BaseModel):
     name: str
     description: str
-    status: bool
+    status: bool = False
 
 
 class Status_Filter(str, Enum):
@@ -44,7 +44,7 @@ async def show_tasks(status: Status_Filter):
 
 @app.post("/tasks/create/", tags=["Cria tarefas"])
 async def create_item(task: Task):
-    ''' Esse método é usado para criar tarefas novas, podendo dar um nome a ela, uma breve descrição e um status, se for "True" quer dizer que ela já está concluída e se for False ainda não está.
+    ''' Esse método é usado para criar tarefas novas, podendo dar um nome a ela, uma breve descrição e um status, se for "True" quer dizer que ela já está concluída e se for "False" ainda não está.
 
      Ela retorna o id da tarefa criada para facilitar sua identificação.'''
     n = max(tasks.keys())
